@@ -1,0 +1,21 @@
+{
+  "name": "horarioutsc",
+  "private": true,
+  "type": "module",
+  "description": "App móvil y panel web para consultar horarios y avisos de la UTSC",
+  "workspaces": [
+    "api"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^15.0.0",
+    "prettier": "^3.0.0"
+  }
+}

@@ -1,0 +1,210 @@
+/* HorarioUTSC · panel de administración
+   Solo lo que Bootstrap no cubre: tokens de marca (dirección «Cartera de boletos»),
+   cupones con cabecera azul, color por materia y detalles de superficie del navegador. */
+
+:root {
+  --hu-tinta: #0b2a5b;
+  --hu-carbon: #5b3fa0;
+  --hu-rojo: #d7192d;
+  --hu-ambar: #f2b630;
+  --hu-fondo: #e9ecf2;
+  --hu-borde: #b9c0cf;
+  --hu-gris-texto: #4a5878;
+  --hu-cabecera-texto: #c7d2ea;
+
+  --bs-body-bg: var(--hu-fondo);
+  --bs-body-color: var(--hu-tinta);
+  --bs-primary: var(--hu-tinta);
+  --bs-primary-rgb: 11, 42, 91;
+  --bs-link-color: var(--hu-carbon);
+  --bs-link-color-rgb: 91, 63, 160;
+  --bs-link-hover-color: var(--hu-tinta);
+  --bs-link-hover-color-rgb: 11, 42, 91;
+  --bs-secondary-color: var(--hu-gris-texto);
+  --bs-border-color: var(--hu-borde);
+  --bs-border-radius: 0.25rem;
+  --bs-border-radius-sm: 0.125rem;
+  --bs-border-radius-lg: 0.375rem;
+}
+
+::selection {
+  background: var(--hu-carbon);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--hu-carbon);
+  outline-offset: 2px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--hu-carbon);
+  box-shadow: 0 0 0 0.2rem rgba(91, 63, 160, 0.25);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--hu-tinta);
+  --bs-btn-border-color: var(--hu-tinta);
+  --bs-btn-hover-bg: var(--hu-carbon);
+  --bs-btn-hover-border-color: var(--hu-carbon);
+  --bs-btn-active-bg: var(--hu-carbon);
+  --bs-btn-active-border-color: var(--hu-carbon);
+  --bs-btn-disabled-bg: var(--hu-tinta);
+  --bs-btn-disabled-border-color: var(--hu-tinta);
+  --bs-btn-focus-shadow-rgb: 91, 63, 160;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--hu-tinta);
+  --bs-btn-border-color: var(--hu-tinta);
+  --bs-btn-hover-bg: var(--hu-tinta);
+  --bs-btn-hover-border-color: var(--hu-tinta);
+  --bs-btn-active-bg: var(--hu-tinta);
+  --bs-btn-active-border-color: var(--hu-tinta);
+  --bs-btn-disabled-color: var(--hu-tinta);
+  --bs-btn-disabled-border-color: var(--hu-tinta);
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--hu-tinta);
+}
+
+.nav-pills .nav-link:not(.active) {
+  color: var(--hu-tinta);
+}
+
+.nav-tabs {
+  --bs-nav-tabs-link-active-color: var(--hu-tinta);
+}
+
+.nav-tabs .nav-link:not(.active) {
+  color: var(--hu-gris-texto);
+}
+
+.hu-barra {
+  background: var(--hu-tinta);
+}
+
+.hu-hora {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cupón: papel blanco con cabecera azul de letras espaciadas */
+.hu-cupon {
+  background: #fff;
+  border: 1px solid var(--hu-borde);
+  border-radius: var(--bs-border-radius);
+  overflow: hidden;
+}
+
+.hu-cupon__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--hu-tinta);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.hu-cupon__cabecera--secundario {
+  color: var(--hu-cabecera-texto);
+}
+
+/* Cifras «llenadas a carbón» */
+.hu-carbon {
+  color: var(--hu-carbon);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hu-rotulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hu-gris-texto);
+}
+
+/* Punto de color por materia (identifica la materia; nunca comunica estado) */
+.hu-punto {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--hu-gris-texto);
+}
+
+.hu-materia-0 {
+  background: #6c4ab6;
+}
+.hu-materia-1 {
+  background: #0e8a7d;
+}
+.hu-materia-2 {
+  background: #f28c28;
+}
+.hu-materia-3 {
+  background: #d1345b;
+}
+.hu-materia-4 {
+  background: #2f6fb5;
+}
+.hu-materia-5 {
+  background: #7a8a2f;
+}
+
+/* Estados: siempre con texto; el color solo lo refuerza */
+.hu-ficha {
+  display: inline-block;
+  padding: 0.0625rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--bs-border-radius-sm);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hu-ficha--cambio {
+  background: var(--hu-ambar);
+  color: var(--hu-tinta);
+}
+
+.hu-sello {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border: 3px solid var(--hu-rojo);
+  border-radius: var(--bs-border-radius-sm);
+  color: var(--hu-rojo);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+}
+
+.hu-clase--cancelada .hu-clase__materia {
+  text-decoration: line-through;
+}
+
+.hu-contador {
+  font-variant-numeric: tabular-nums;
+}
+
+.hu-historial td,
+.hu-historial th {
+  vertical-align: top;
+}
+
+.hu-tabla-previa {
+  max-height: 20rem;
+  overflow: auto;
+}

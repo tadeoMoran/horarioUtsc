@@ -1,0 +1,10 @@
+node_modules
+.claude
+.impeccable
+mockup
+*.docx
+*.pdf
+*.png
+mobile/.expo
+mobile/package-lock.json
+mobile/assets

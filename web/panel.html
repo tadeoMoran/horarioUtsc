@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Panel de HorarioUTSC para capturar el horario de cada grupo, publicar avisos y revisar el historial de cambios."
+    />
+    <meta name="robots" content="noindex" />
+    <title>Panel de administración | HorarioUTSC</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+      integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ"
+      crossorigin="anonymous"
+    />
+    <link href="css/main.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script type="module" src="js/panel.js"></script>
+  </head>
+  <body>
+    <header id="panel-encabezado" class="hu-barra text-white">
+      <div class="container d-flex align-items-center gap-3 py-3">
+        <i class="bi bi-calendar-week fs-4" aria-hidden="true"></i>
+        <p class="fw-bold mb-0 me-auto">HorarioUTSC · Panel</p>
+        <span id="panel-admin" class="small"></span>
+        <button type="button" id="panel-salir" class="btn btn-outline-light btn-sm">
+          <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Cerrar sesión
+        </button>
+      </div>
+    </header>
+
+    <main class="container py-4">
+      <h1 class="h3 fw-bold mb-3">Horarios y avisos</h1>
+
+      <section id="panel-seleccion-grupo" class="mb-3" aria-label="Selección de grupo">
+        <label for="panel-grupo" class="form-label">Grupo</label>
+        <select id="panel-grupo" class="form-select w-auto mw-100"></select>
+      </section>
+
+      <div id="panel-mensajes" aria-live="polite"></div>
+
+      <ul class="nav nav-tabs" id="panel-pestanas" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            type="button"
+            class="nav-link active"
+            id="pestana-horario"
+            data-bs-toggle="tab"
+            data-bs-target="#panel-horario"
+            role="tab"
+            aria-controls="panel-horario"
+            aria-selected="true"
+          >
+            <i class="bi bi-calendar3" aria-hidden="true"></i> Horario
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            type="button"
+            class="nav-link"
+            id="pestana-avisos"
+            data-bs-toggle="tab"
+            data-bs-target="#panel-avisos"
+            role="tab"
+            aria-controls="panel-avisos"
+            aria-selected="false"
+          >
+            <i class="bi bi-megaphone" aria-hidden="true"></i> Avisos
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            type="button"
+            class="nav-link"
+            id="pestana-historial"
+            data-bs-toggle="tab"
+            data-bs-target="#panel-historial"
+            role="tab"
+            aria-controls="panel-historial"
+            aria-selected="false"
+          >
+            <i class="bi bi-clock-history" aria-hidden="true"></i> Historial
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content pt-4">
+        <section
+          id="panel-horario"
+          class="tab-pane fade show active"
+          role="tabpanel"
+          aria-labelledby="pestana-horario"
+          tabindex="0"
+        >
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <h2 class="h5 fw-bold mb-0">Clases de la semana</h2>
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" id="horario-importar" class="btn btn-outline-primary">
+                <i class="bi bi-file-earmark-spreadsheet" aria-hidden="true"></i> Importar CSV
+              </button>
+              <button type="button" id="horario-agregar" class="btn btn-primary">
+                <i class="bi bi-plus-lg" aria-hidden="true"></i> Agregar clase
+              </button>
+            </div>
+          </div>
+
+          <div id="importar-contenedor" class="bg-white rounded p-3 mb-4 d-none">
+            <h3 class="h6 fw-bold mb-2">Importar horario desde CSV</h3>
+            <p class="small text-secondary">
+              Columnas: materia, docente (opcional), día, inicio, fin y aula. Las clases del archivo
+              se suman a las que ya tiene el grupo.
+              <a
+                href="plantilla-horario.csv"
+                download
+                title="Descargar una plantilla de ejemplo en CSV"
+                >Descargar plantilla</a
+              >
+            </p>
+            <label for="importar-archivo" class="form-label">Archivo CSV</label>
+            <input
+              type="file"
+              id="importar-archivo"
+              class="form-control mb-3"
+              accept=".csv,text/csv"
+            />
+            <div id="importar-resultado" aria-live="polite"></div>
+            <div class="d-flex gap-2 mt-3">
+              <button type="button" id="importar-confirmar" class="btn btn-primary" disabled>
+                Importar clases
+              </button>
+              <button type="button" id="importar-cancelar" class="btn btn-outline-secondary">
+                Cancelar
+              </button>
+            </div>
+          </div>
+
+          <div id="horario-formulario-contenedor" class="bg-white rounded p-3 mb-4 d-none">
+            <h3 id="horario-formulario-titulo" class="h6 fw-bold mb-3">Agregar clase</h3>
+            <form id="horario-formulario" novalidate>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="clase-materia" class="form-label">Materia</label>
+                  <input
+                    type="text"
+                    id="clase-materia"
+                    name="materia"
+                    class="form-control"
+                    maxlength="120"
+                    required
+                  />
+                  <div class="invalid-feedback">Escribe el nombre de la materia.</div>
+                </div>
+                <div class="col-12 col-md-6" data-solo-alta>
+                  <label for="clase-docente" class="form-label">Docente (opcional)</label>
+                  <input
+                    type="text"
+                    id="clase-docente"
+                    name="docente"
+                    class="form-control"
+                    maxlength="120"
+                  />
+                </div>
+                <div class="col-12 col-md-6 d-none" data-solo-edicion>
+                  <label for="clase-estado" class="form-label">Estado</label>
+                  <select id="clase-estado" name="estado" class="form-select">
+                    <option value="normal">Normal</option>
+                    <option value="aula_cambiada">Aula cambiada</option>
+                    <option value="cancelada">Cancelada</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-4">
+                  <label for="clase-dia" class="form-label">Día</label>
+                  <select id="clase-dia" name="dia_semana" class="form-select" required>
+                    <option value="1">Lunes</option>
+                    <option value="2">Martes</option>
+                    <option value="3">Miércoles</option>
+                    <option value="4">Jueves</option>
+                    <option value="5">Viernes</option>
+                    <option value="6">Sábado</option>
+                  </select>
+                </div>
+                <div class="col-6 col-md-2">
+                  <label for="clase-inicio" class="form-label">Inicio</label>
+                  <input
+                    type="time"
+                    id="clase-inicio"
+                    name="hora_inicio"
+                    class="form-control"
+                    required
+                  />
+                  <div class="invalid-feedback">Indica la hora.</div>
+                </div>
+                <div class="col-6 col-md-2">
+                  <label for="clase-fin" class="form-label">Fin</label>
+                  <input type="time" id="clase-fin" name="hora_fin" class="form-control" required />
+                  <div class="invalid-feedback">Indica la hora.</div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <label for="clase-aula" class="form-label">Aula</label>
+                  <input
+                    type="text"
+                    id="clase-aula"
+                    name="aula"
+                    class="form-control"
+                    maxlength="40"
+                    required
+                  />
+                  <div class="invalid-feedback">Escribe el aula.</div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" id="horario-cancelar" class="btn btn-outline-secondary">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <ul id="horario-dias" class="nav nav-pills flex-wrap gap-1 mb-3"></ul>
+          <ul id="horario-lista" class="list-unstyled d-flex flex-column gap-2 mb-0"></ul>
+        </section>
+
+        <section
+          id="panel-avisos"
+          class="tab-pane fade"
+          role="tabpanel"
+          aria-labelledby="pestana-avisos"
+          tabindex="0"
+        >
+          <div class="row g-4">
+            <div class="col-12 col-lg-5">
+              <h2 class="h5 fw-bold mb-3">Publicar aviso</h2>
+              <form id="avisos-formulario" novalidate>
+                <div class="mb-3">
+                  <label for="aviso-tipo" class="form-label">Tipo de aviso</label>
+                  <select id="aviso-tipo" name="tipo" class="form-select" required>
+                    <option value="cambio_aula">Cambio de aula</option>
+                    <option value="clase_cancelada">Clase cancelada</option>
+                    <option value="general">Aviso general</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="aviso-clase" class="form-label">Clase afectada</label>
+                  <select id="aviso-clase" name="clase_id" class="form-select"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="aviso-mensaje" class="form-label">Mensaje</label>
+                  <textarea
+                    id="aviso-mensaje"
+                    name="mensaje"
+                    class="form-control"
+                    rows="4"
+                    maxlength="500"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">Escribe el mensaje del aviso.</div>
+                  <div id="aviso-contador" class="form-text text-end hu-contador"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-megaphone" aria-hidden="true"></i> Publicar aviso
+                </button>
+                <p class="form-text mt-2 mb-0">
+                  Los alumnos ven este aviso en la app. No es un aviso oficial de la escuela.
+                </p>
+              </form>
+            </div>
+            <div class="col-12 col-lg-7">
+              <h2 class="h5 fw-bold mb-3">Avisos publicados</h2>
+              <ul id="avisos-lista" class="list-unstyled d-flex flex-column gap-2 mb-0"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="panel-historial"
+          class="tab-pane fade"
+          role="tabpanel"
+          aria-labelledby="pestana-historial"
+          tabindex="0"
+        >
+          <h2 class="h5 fw-bold mb-3">Historial de cambios</h2>
+          <div class="table-responsive bg-white rounded">
+            <table class="table align-middle mb-0 hu-historial">
+              <thead>
+                <tr>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Administrador</th>
+                  <th scope="col">Qué cambió</th>
+                  <th scope="col">Detalle</th>
+                </tr>
+              </thead>
+              <tbody id="historial-cuerpo"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
