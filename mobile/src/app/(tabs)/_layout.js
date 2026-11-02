@@ -1,4 +1,4 @@
-import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { NativeTabs } from 'expo-router/native-tabs';
 import { useColores } from '@/tema/colores';
 
 // Barra de pestañas del sistema (UITabBar en iOS, Material en Android), no dibujada a mano.
