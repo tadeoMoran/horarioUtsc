@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { GrupoProvider, useGrupo } from '@/contexto/GrupoContext';
+import { useNotificaciones } from '@/hooks/useNotificaciones';
 import { configurarNotificaciones } from '@/servicios/recordatorios';
 import { useColores } from '@/tema/colores';
 
@@ -9,6 +10,7 @@ configurarNotificaciones();
 const Navegacion = () => {
   const { grupo, cargando } = useGrupo();
   const c = useColores();
+  useNotificaciones(grupo);
   if (cargando) return null;
 
   return (
