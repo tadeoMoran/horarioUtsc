@@ -1,7 +1,9 @@
 import { ErrorHttp } from '../middleware/errores.js';
+import * as avisos from '../repositorios/avisos.js';
 import * as clases from '../repositorios/clases.js';
 import * as historial from '../repositorios/historial.js';
 import { exigirAccesoGrupo } from './acceso.js';
+import { enviarPushDeAviso } from './avisos.js';
 
 const exigirRangoValido = (inicio, fin) => {
   // HH:MM ordena igual como texto que como hora.
@@ -48,7 +50,50 @@ export const crearClase = async (db, adminId, datos) => {
   return clases.buscarPorId(db, claseId);
 };
 
-export const actualizarClase = async (db, adminId, claseId, cambios) => {
+const DIAS = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
+
+// Decide si un cambio merece avisar al grupo y con qué texto. Si cambian varias cosas a la vez
+// se manda un solo aviso, el más importante: cancelación > restablecida > aula > horario.
+export const avisoPorCambio = (actual, nuevo) => {
+  const dia = DIAS[nuevo.dia_semana - 1];
+  const materia = nuevo.materia;
+  if (nuevo.estado === 'cancelada' && actual.estado !== 'cancelada') {
+    return {
+      tipo: 'clase_cancelada',
+      titulo: 'Clase cancelada',
+      mensaje: `Se cancela ${materia} del ${dia} (${actual.hora_inicio}-${actual.hora_fin}).`,
+    };
+  }
+  if (actual.estado === 'cancelada' && nuevo.estado === 'normal') {
+    return {
+      tipo: 'general',
+      titulo: 'Clase restablecida',
+      mensaje: `${materia} del ${dia} vuelve a darse a las ${nuevo.hora_inicio} en ${nuevo.aula}.`,
+    };
+  }
+  const aulaCambio = nuevo.aula !== actual.aula;
+  if (aulaCambio || (nuevo.estado === 'aula_cambiada' && actual.estado !== 'aula_cambiada')) {
+    const antes = aulaCambio ? ` (antes ${actual.aula})` : '';
+    return {
+      tipo: 'cambio_aula',
+      titulo: 'Cambio de aula',
+      mensaje: `${materia} del ${dia} ahora es en ${nuevo.aula}${antes}.`,
+    };
+  }
+  const horarioCambio = ['dia_semana', 'hora_inicio', 'hora_fin'].some(
+    (campo) => nuevo[campo] !== actual[campo],
+  );
+  if (horarioCambio) {
+    return {
+      tipo: 'general',
+      titulo: 'Cambio de horario',
+      mensaje: `${materia} pasa al ${dia} de ${nuevo.hora_inicio} a ${nuevo.hora_fin}.`,
+    };
+  }
+  return null;
+};
+
+export const actualizarClase = async (db, notificar, adminId, claseId, cambios) => {
   const actual = await clases.buscarPorId(db, claseId);
   if (!actual) throw new ErrorHttp(404, 'Clase no encontrada');
   await exigirAccesoGrupo(db, adminId, actual.grupo_id);
@@ -80,6 +125,9 @@ export const actualizarClase = async (db, adminId, claseId, cambios) => {
     });
   }
 
+  const cambioParaAvisar = avisoPorCambio(actual, nuevo);
+  let avisoAutomatico = null;
+
   await db.transaction(async (tx) => {
     const materiaId =
       nuevo.materia === actual.materia
@@ -104,7 +152,21 @@ export const actualizarClase = async (db, adminId, claseId, cambios) => {
         nuevo: String(nuevo[campo]),
       });
     }
+    // El aviso se guarda en la misma transacción que el cambio: o quedan los dos o ninguno.
+    if (cambioParaAvisar) {
+      avisoAutomatico = await avisos.insertar(tx, {
+        grupoId: actual.grupo_id,
+        claseId,
+        administradorId: adminId,
+        tipo: cambioParaAvisar.tipo,
+        mensaje: cambioParaAvisar.mensaje,
+      });
+    }
   });
+  // El push va después de confirmar los datos, para no avisar de algo que se revirtió.
+  if (avisoAutomatico) {
+    await enviarPushDeAviso(notificar, avisoAutomatico, cambioParaAvisar.titulo);
+  }
   return clases.buscarPorId(db, claseId);
 };
 
