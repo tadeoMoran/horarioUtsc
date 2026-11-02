@@ -5,11 +5,12 @@ import rateLimit from 'express-rate-limit';
 import { manejarErrores, rutaNoEncontrada } from './middleware/errores.js';
 import { crearRutasAdmin } from './rutas/admin.js';
 import { crearRutasPublicas } from './rutas/publicas.js';
+import { crearNotificador } from './servicios/push.js';
 
 const CDN = 'https://cdn.jsdelivr.net';
 
 // `webDir` es la carpeta del panel web; si aún no existe contenido, solo se sirve la API.
-export const crearApp = ({ db, config, webDir }) => {
+export const crearApp = ({ db, config, webDir, enviar }) => {
   const app = express();
   const produccion = config.NODE_ENV === 'production';
 
@@ -46,7 +47,9 @@ export const crearApp = ({ db, config, webDir }) => {
     }),
   );
 
-  const contexto = { db, config };
+  // `enviar` manda los mensajes push (Expo en producción, un doble en las pruebas).
+  // Sin él la API funciona igual, solo que no notifica.
+  const contexto = { db, config, notificar: crearNotificador({ db, enviar }) };
   app.use('/api', crearRutasPublicas(contexto), crearRutasAdmin(contexto));
   app.use('/api', rutaNoEncontrada);
 
