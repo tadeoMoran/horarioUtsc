@@ -21,6 +21,9 @@ const notificaciones = () => {
   return modulo;
 };
 
+// Los demás servicios de notificaciones comparten la misma carga segura del módulo.
+export const cargarNotificaciones = notificaciones;
+
 export const NO_DISPONIBLE = 'NOTIFICACIONES_NO_DISPONIBLES';
 
 // Con la app abierta, también se muestra el aviso.
