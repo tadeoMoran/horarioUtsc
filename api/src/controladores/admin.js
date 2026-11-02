@@ -6,7 +6,7 @@ import * as clasesAdmin from '../servicios/clases-admin.js';
 import * as importacion from '../servicios/importar-clases.js';
 import { exigirAccesoGrupo } from '../servicios/acceso.js';
 
-export const crearControladorAdmin = ({ db, config }) => ({
+export const crearControladorAdmin = ({ db, config, notificar }) => ({
   login: async (req, res) => {
     res.json(await auth.iniciarSesion(db, config, req.datos.body));
   },
@@ -28,7 +28,7 @@ export const crearControladorAdmin = ({ db, config }) => ({
 
   actualizarClase: async (req, res) => {
     const { id } = req.datos.params;
-    res.json(await clasesAdmin.actualizarClase(db, req.admin.id, id, req.datos.body));
+    res.json(await clasesAdmin.actualizarClase(db, notificar, req.admin.id, id, req.datos.body));
   },
 
   eliminarClase: async (req, res) => {
@@ -37,7 +37,7 @@ export const crearControladorAdmin = ({ db, config }) => ({
   },
 
   publicarAviso: async (req, res) => {
-    res.status(201).json(await avisos.publicarAviso(db, req.admin.id, req.datos.body));
+    res.status(201).json(await avisos.publicarAviso(db, notificar, req.admin.id, req.datos.body));
   },
 
   historialGrupo: async (req, res) => {
