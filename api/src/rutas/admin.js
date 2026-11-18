@@ -34,8 +34,13 @@ export const crearRutasAdmin = (contexto) => {
   router.post('/admin/avisos', validar({ body: esquemas.avisoNuevo }), c.publicarAviso);
   router.get(
     '/admin/grupos/:id/historial',
-    validar({ params: esquemas.paramsId, query: esquemas.consultaLista }),
+    validar({ params: esquemas.paramsId, query: esquemas.consultaHistorial }),
     c.historialGrupo,
+  );
+  router.get(
+    '/admin/grupos/:id/historial/administradores',
+    validar({ params: esquemas.paramsId }),
+    c.administradoresHistorial,
   );
 
   return router;
