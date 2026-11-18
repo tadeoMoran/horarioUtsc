@@ -21,7 +21,8 @@ describe('csv del panel web', () => {
 
   test('normaliza días y horas', () => {
     expect(normalizarDia('Miércoles')).toBe(3);
-    expect(normalizarDia('SABADO')).toBe(6);
+    expect(normalizarDia('SABADO')).toBeNull(); // Fin de semana: no hay clases.
+    expect(normalizarDia('6')).toBeNull();
     expect(normalizarDia('2')).toBe(2);
     expect(normalizarDia('festivo')).toBeNull();
     expect(normalizarHora('7:00')).toBe('07:00');
