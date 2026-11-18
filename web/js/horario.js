@@ -3,7 +3,7 @@ import { CANTIDAD_COLORES_MATERIA, DIAS } from './constantes.js';
 import { el, icono, indiceColor } from './dom.js';
 import { mostrarError, mostrarMensaje } from './mensajes.js';
 
-const DIAS_VISIBLES = [1, 2, 3, 4, 5, 6];
+const DIAS_VISIBLES = [1, 2, 3, 4, 5]; // Lunes a viernes: no hay clases en fin de semana.
 
 const formulario = document.getElementById('horario-formulario');
 const contenedorFormulario = document.getElementById('horario-formulario-contenedor');
