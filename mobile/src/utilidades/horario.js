@@ -41,3 +41,20 @@ export const agruparPorDia = (clases) => {
 };
 
 export const etiquetaGrupo = (grupo) => `${grupo.cuatrimestre}° ${grupo.letra}`;
+
+// Carreras en orden alfabético y, dentro de cada una, grupos por cuatrimestre y letra.
+export const agruparPorCarrera = (grupos) => {
+  const porCarrera = new Map();
+  for (const grupo of grupos) {
+    if (!porCarrera.has(grupo.carrera_id)) {
+      porCarrera.set(grupo.carrera_id, { id: grupo.carrera_id, nombre: grupo.carrera, grupos: [] });
+    }
+    porCarrera.get(grupo.carrera_id).grupos.push(grupo);
+  }
+  for (const carrera of porCarrera.values()) {
+    carrera.grupos.sort(
+      (a, b) => a.cuatrimestre - b.cuatrimestre || a.letra.localeCompare(b.letra),
+    );
+  }
+  return [...porCarrera.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+};
