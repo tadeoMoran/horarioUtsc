@@ -16,3 +16,6 @@ mobile/dist/
 .impeccable/review/
 .impeccable/build/
 .impeccable/config.local.json
+
+# Respaldos del script de poblado
+api/backups/
