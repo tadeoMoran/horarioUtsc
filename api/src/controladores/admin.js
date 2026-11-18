@@ -43,6 +43,12 @@ export const crearControladorAdmin = ({ db, config, notificar }) => ({
   historialGrupo: async (req, res) => {
     const { id } = req.datos.params;
     await exigirAccesoGrupo(db, req.admin.id, id);
-    res.json(await historial.listarPorGrupo(db, id, req.datos.query.limite));
+    res.json(await historial.listarPorGrupo(db, id, req.datos.query));
+  },
+
+  administradoresHistorial: async (req, res) => {
+    const { id } = req.datos.params;
+    await exigirAccesoGrupo(db, req.admin.id, id);
+    res.json(await historial.administradoresDelGrupo(db, id));
   },
 });
