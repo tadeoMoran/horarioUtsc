@@ -29,77 +29,322 @@ const CARRERAS = [
     // [cuatrimestre, letra]
     grupos: ['1A', '1B', '3C', '4A', '6D', '8A', '9E'],
     bloques: [
-      ['*Fundamentos de Programación', 'Matemáticas para Ingeniería', 'Introducción a las Tecnologías de la Información', 'Expresión Oral y Escrita I', 'Inglés I', 'Habilidades Socioemocionales y Manejo de Conflictos'],
-      ['*Programación Orientada a Objetos', '*Estructuras de Datos', '*Bases de Datos', 'Álgebra Lineal', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['*Desarrollo Web', '*Programación de Base de Datos', 'Ingeniería de Software', 'Probabilidad y Estadística', 'Inglés V', 'Proyecto Integrador I'],
-      ['Arquitectura de Software', '*Desarrollo Móvil Multiplataforma', 'Pruebas y Calidad de Software', 'Gestión de Proyectos de TI', 'Seguridad Informática', 'Inglés VII'],
-      ['*Desarrollo Móvil Integral', '*Computación en la Nube', '*Bases de Datos No Relacionales', 'Inteligencia Artificial', 'Gestión de Proyectos de Software', 'Inglés IX'],
+      [
+        '*Fundamentos de Programación',
+        'Matemáticas para Ingeniería',
+        'Introducción a las Tecnologías de la Información',
+        'Expresión Oral y Escrita I',
+        'Inglés I',
+        'Habilidades Socioemocionales y Manejo de Conflictos',
+      ],
+      [
+        '*Programación Orientada a Objetos',
+        '*Estructuras de Datos',
+        '*Bases de Datos',
+        'Álgebra Lineal',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        '*Desarrollo Web',
+        '*Programación de Base de Datos',
+        'Ingeniería de Software',
+        'Probabilidad y Estadística',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        'Arquitectura de Software',
+        '*Desarrollo Móvil Multiplataforma',
+        'Pruebas y Calidad de Software',
+        'Gestión de Proyectos de TI',
+        'Seguridad Informática',
+        'Inglés VII',
+      ],
+      [
+        '*Desarrollo Móvil Integral',
+        '*Computación en la Nube',
+        '*Bases de Datos No Relacionales',
+        'Inteligencia Artificial',
+        'Gestión de Proyectos de Software',
+        'Inglés IX',
+      ],
     ],
   },
   {
     nombre: 'Ing. en Mecatrónica',
     grupos: ['1C', '2A', '3B', '5A', '6E', '7B', '10A'],
     bloques: [
-      ['*Física Aplicada', 'Matemáticas para Ingeniería', 'Dibujo Técnico', '*Fundamentos de Electricidad', 'Inglés I', 'Expresión Oral y Escrita I'],
-      ['*Electrónica Analógica', 'Cálculo Diferencial', '*Neumática e Hidráulica', 'Estática', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['*Controladores Lógicos Programables', '*Electrónica Digital', 'Cálculo Integral', 'Dinámica', 'Inglés V', 'Proyecto Integrador I'],
-      ['*Automatización Industrial', '*Robótica', 'Sistemas de Control', 'Diseño Mecánico', 'Inglés VII', 'Gestión de Proyectos de Ingeniería'],
-      ['*Mecatrónica Avanzada', '*Control Inteligente', '*Visión Artificial', 'Manufactura Integrada por Computadora', 'Inglés IX', 'Administración de Proyectos de Automatización'],
+      [
+        '*Física Aplicada',
+        'Matemáticas para Ingeniería',
+        'Dibujo Técnico',
+        '*Fundamentos de Electricidad',
+        'Inglés I',
+        'Expresión Oral y Escrita I',
+      ],
+      [
+        '*Electrónica Analógica',
+        'Cálculo Diferencial',
+        '*Neumática e Hidráulica',
+        'Estática',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        '*Controladores Lógicos Programables',
+        '*Electrónica Digital',
+        'Cálculo Integral',
+        'Dinámica',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        '*Automatización Industrial',
+        '*Robótica',
+        'Sistemas de Control',
+        'Diseño Mecánico',
+        'Inglés VII',
+        'Gestión de Proyectos de Ingeniería',
+      ],
+      [
+        '*Mecatrónica Avanzada',
+        '*Control Inteligente',
+        '*Visión Artificial',
+        'Manufactura Integrada por Computadora',
+        'Inglés IX',
+        'Administración de Proyectos de Automatización',
+      ],
     ],
   },
   {
     nombre: 'Ing. en Mantenimiento Industrial',
     grupos: ['1D', '2B', '4B', '5C', '7C', '8E', '9A'],
     bloques: [
-      ['Matemáticas para Ingeniería', '*Fundamentos de Electricidad', 'Seguridad e Higiene Industrial', '*Metrología y Dibujo Técnico', 'Inglés I', 'Expresión Oral y Escrita I'],
-      ['*Mantenimiento Preventivo', '*Neumática e Hidráulica', 'Estática', '*Electricidad Industrial', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['*Mantenimiento Correctivo y Predictivo', '*Sistemas de Lubricación', 'Termodinámica', '*Controladores Lógicos Programables', 'Inglés V', 'Proyecto Integrador I'],
-      ['Gestión del Mantenimiento', '*Mantenimiento de Máquinas Eléctricas', 'Confiabilidad y Análisis de Fallas', 'Costos y Presupuestos', 'Inglés VII', 'Gestión de Proyectos de Ingeniería'],
-      ['*Mantenimiento Predictivo Avanzado', 'Gestión de Activos Industriales', 'Normatividad y Seguridad Industrial', 'Mejora Continua', 'Inglés IX', 'Administración de Proyectos de Mantenimiento'],
+      [
+        'Matemáticas para Ingeniería',
+        '*Fundamentos de Electricidad',
+        'Seguridad e Higiene Industrial',
+        '*Metrología y Dibujo Técnico',
+        'Inglés I',
+        'Expresión Oral y Escrita I',
+      ],
+      [
+        '*Mantenimiento Preventivo',
+        '*Neumática e Hidráulica',
+        'Estática',
+        '*Electricidad Industrial',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        '*Mantenimiento Correctivo y Predictivo',
+        '*Sistemas de Lubricación',
+        'Termodinámica',
+        '*Controladores Lógicos Programables',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        'Gestión del Mantenimiento',
+        '*Mantenimiento de Máquinas Eléctricas',
+        'Confiabilidad y Análisis de Fallas',
+        'Costos y Presupuestos',
+        'Inglés VII',
+        'Gestión de Proyectos de Ingeniería',
+      ],
+      [
+        '*Mantenimiento Predictivo Avanzado',
+        'Gestión de Activos Industriales',
+        'Normatividad y Seguridad Industrial',
+        'Mejora Continua',
+        'Inglés IX',
+        'Administración de Proyectos de Mantenimiento',
+      ],
     ],
   },
   {
     nombre: 'Ing. Industrial',
     grupos: ['1E', '2C', '3D', '4E', '6A', '7D', '10C'],
     bloques: [
-      ['Matemáticas para Ingeniería', 'Fundamentos de Procesos Industriales', 'Dibujo Técnico', '*Física Aplicada', 'Inglés I', 'Expresión Oral y Escrita I'],
-      ['Estadística para Ingeniería', '*Procesos de Manufactura', 'Ciencia de los Materiales', 'Estudio del Trabajo', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['*Control Estadístico de la Calidad', 'Planeación de la Producción', 'Ergonomía', 'Cálculo Integral', 'Inglés V', 'Proyecto Integrador I'],
-      ['Ingeniería de Métodos', 'Logística y Cadena de Suministro', '*Simulación de Procesos', 'Sistemas de Gestión de la Calidad', 'Inglés VII', 'Costos Industriales'],
-      ['Manufactura Esbelta', 'Seis Sigma', 'Gestión de la Cadena de Suministro', 'Diseño de Instalaciones Industriales', 'Inglés IX', 'Gestión de Proyectos de Ingeniería'],
+      [
+        'Matemáticas para Ingeniería',
+        'Fundamentos de Procesos Industriales',
+        'Dibujo Técnico',
+        '*Física Aplicada',
+        'Inglés I',
+        'Expresión Oral y Escrita I',
+      ],
+      [
+        'Estadística para Ingeniería',
+        '*Procesos de Manufactura',
+        'Ciencia de los Materiales',
+        'Estudio del Trabajo',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        '*Control Estadístico de la Calidad',
+        'Planeación de la Producción',
+        'Ergonomía',
+        'Cálculo Integral',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        'Ingeniería de Métodos',
+        'Logística y Cadena de Suministro',
+        '*Simulación de Procesos',
+        'Sistemas de Gestión de la Calidad',
+        'Inglés VII',
+        'Costos Industriales',
+      ],
+      [
+        'Manufactura Esbelta',
+        'Seis Sigma',
+        'Gestión de la Cadena de Suministro',
+        'Diseño de Instalaciones Industriales',
+        'Inglés IX',
+        'Gestión de Proyectos de Ingeniería',
+      ],
     ],
   },
   {
     nombre: 'Ing. en Electromovilidad',
     grupos: ['1A', '2D', '3A', '5B', '6C', '8B', '9C'],
     bloques: [
-      ['Matemáticas para Ingeniería', '*Fundamentos de Electricidad', '*Física Aplicada', 'Introducción a la Movilidad Eléctrica', 'Inglés I', 'Expresión Oral y Escrita I'],
-      ['*Circuitos Eléctricos', '*Electrónica de Potencia', 'Cálculo Diferencial', '*Mecánica Automotriz Básica', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['*Máquinas Eléctricas', '*Baterías y Almacenamiento de Energía', '*Sistemas Embebidos', 'Cálculo Integral', 'Inglés V', 'Proyecto Integrador I'],
-      ['*Motores de Tracción Eléctrica', '*Sistemas de Carga y Electrolineras', 'Redes Vehiculares CAN', 'Sistemas de Control', 'Inglés VII', 'Gestión de Proyectos de Ingeniería'],
-      ['*Diagnóstico de Vehículos Eléctricos', '*Gestión de Baterías (BMS)', 'Movilidad Autónoma y Conectada', 'Energías Renovables', 'Inglés IX', 'Gestión de Proyectos de Ingeniería'],
+      [
+        'Matemáticas para Ingeniería',
+        '*Fundamentos de Electricidad',
+        '*Física Aplicada',
+        'Introducción a la Movilidad Eléctrica',
+        'Inglés I',
+        'Expresión Oral y Escrita I',
+      ],
+      [
+        '*Circuitos Eléctricos',
+        '*Electrónica de Potencia',
+        'Cálculo Diferencial',
+        '*Mecánica Automotriz Básica',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        '*Máquinas Eléctricas',
+        '*Baterías y Almacenamiento de Energía',
+        '*Sistemas Embebidos',
+        'Cálculo Integral',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        '*Motores de Tracción Eléctrica',
+        '*Sistemas de Carga y Electrolineras',
+        'Redes Vehiculares CAN',
+        'Sistemas de Control',
+        'Inglés VII',
+        'Gestión de Proyectos de Ingeniería',
+      ],
+      [
+        '*Diagnóstico de Vehículos Eléctricos',
+        '*Gestión de Baterías (BMS)',
+        'Movilidad Autónoma y Conectada',
+        'Energías Renovables',
+        'Inglés IX',
+        'Gestión de Proyectos de Ingeniería',
+      ],
     ],
   },
   {
     nombre: 'Lic. en Negocios y Mercadotecnia',
     grupos: ['1B', '2E', '3E', '4C', '5D', '7E', '9D'],
     bloques: [
-      ['Fundamentos de Mercadotecnia', 'Matemáticas Básicas para Negocios', 'Informática para Negocios', 'Contabilidad Básica', 'Inglés I', 'Expresión Oral y Escrita I'],
-      ['Comportamiento del Consumidor', 'Estadística para Negocios', 'Publicidad y Promoción', 'Microeconomía', 'Inglés III', 'Desarrollo Humano y Valores'],
-      ['Investigación de Mercados', 'Marketing Digital', 'Costos y Presupuestos', 'Ventas y Negociación', 'Inglés V', 'Proyecto Integrador I'],
-      ['Planeación Estratégica de Mercadotecnia', 'Comercio Electrónico', 'Branding y Gestión de Marca', 'Finanzas para Negocios', 'Inglés VII', 'Emprendimiento e Innovación'],
-      ['Dirección Estratégica', 'Analítica de Datos para Negocios', 'Mercadotecnia Internacional', 'Responsabilidad Social Empresarial', 'Inglés IX', 'Formulación de Proyectos de Negocio'],
+      [
+        'Fundamentos de Mercadotecnia',
+        'Matemáticas Básicas para Negocios',
+        'Informática para Negocios',
+        'Contabilidad Básica',
+        'Inglés I',
+        'Expresión Oral y Escrita I',
+      ],
+      [
+        'Comportamiento del Consumidor',
+        'Estadística para Negocios',
+        'Publicidad y Promoción',
+        'Microeconomía',
+        'Inglés III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        'Investigación de Mercados',
+        'Marketing Digital',
+        'Costos y Presupuestos',
+        'Ventas y Negociación',
+        'Inglés V',
+        'Proyecto Integrador I',
+      ],
+      [
+        'Planeación Estratégica de Mercadotecnia',
+        'Comercio Electrónico',
+        'Branding y Gestión de Marca',
+        'Finanzas para Negocios',
+        'Inglés VII',
+        'Emprendimiento e Innovación',
+      ],
+      [
+        'Dirección Estratégica',
+        'Analítica de Datos para Negocios',
+        'Mercadotecnia Internacional',
+        'Responsabilidad Social Empresarial',
+        'Inglés IX',
+        'Formulación de Proyectos de Negocio',
+      ],
     ],
   },
   {
     nombre: 'Lic. en Educación (Enseñanza del Inglés)',
     grupos: ['1C', '3B', '4D', '5E', '6B', '8C', '10D'],
     bloques: [
-      ['Gramática del Inglés I', '*Fonética del Inglés', 'Expresión Oral y Escrita I', 'Introducción a la Pedagogía', 'Informática para la Docencia', 'Lengua Inglesa I'],
-      ['Gramática del Inglés II', 'Lectura y Redacción en Inglés', 'Psicología del Aprendizaje', 'Didáctica General', 'Lengua Inglesa III', 'Desarrollo Humano y Valores'],
-      ['Metodología de la Enseñanza del Inglés', 'Evaluación del Aprendizaje de Idiomas', 'Literatura en Lengua Inglesa', 'Tecnologías para la Enseñanza de Idiomas', 'Lengua Inglesa V', 'Proyecto Integrador I'],
-      ['Planeación Didáctica', 'Adquisición de Segundas Lenguas', 'Inglés con Fines Específicos', 'Diseño de Materiales Didácticos', 'Lengua Inglesa VII', 'Investigación Educativa'],
-      ['Práctica Docente', 'Gestión Educativa', 'Traducción e Interpretación Básica', 'Currículo y Diseño Instruccional', 'Lengua Inglesa IX', 'Seminario de Titulación'],
+      [
+        'Gramática del Inglés I',
+        '*Fonética del Inglés',
+        'Expresión Oral y Escrita I',
+        'Introducción a la Pedagogía',
+        'Informática para la Docencia',
+        'Lengua Inglesa I',
+      ],
+      [
+        'Gramática del Inglés II',
+        'Lectura y Redacción en Inglés',
+        'Psicología del Aprendizaje',
+        'Didáctica General',
+        'Lengua Inglesa III',
+        'Desarrollo Humano y Valores',
+      ],
+      [
+        'Metodología de la Enseñanza del Inglés',
+        'Evaluación del Aprendizaje de Idiomas',
+        'Literatura en Lengua Inglesa',
+        'Tecnologías para la Enseñanza de Idiomas',
+        'Lengua Inglesa V',
+        'Proyecto Integrador I',
+      ],
+      [
+        'Planeación Didáctica',
+        'Adquisición de Segundas Lenguas',
+        'Inglés con Fines Específicos',
+        'Diseño de Materiales Didácticos',
+        'Lengua Inglesa VII',
+        'Investigación Educativa',
+      ],
+      [
+        'Práctica Docente',
+        'Gestión Educativa',
+        'Traducción e Interpretación Básica',
+        'Currículo y Diseño Instruccional',
+        'Lengua Inglesa IX',
+        'Seminario de Titulación',
+      ],
     ],
   },
 ];
@@ -133,8 +378,18 @@ const bandaDe = (cuatrimestre) => Math.min(Math.floor((cuatrimestre - 1) / 2), 4
 // Bloques ocupados de un día para un grupo: empieza tarde, termina temprano y a veces
 // deja una hora libre (un hueco de 40 min) en medio. No todos los días son iguales.
 const diseñarDia = (azar, ligero) => {
-  let inicio = elegirPonderado(azar, [[0, 55], [1, 20], [2, 15], [3, 10]]);
-  let fin = elegirPonderado(azar, [[8, 45], [7, 20], [6, 20], [5, 15]]);
+  let inicio = elegirPonderado(azar, [
+    [0, 55],
+    [1, 20],
+    [2, 15],
+    [3, 10],
+  ]);
+  let fin = elegirPonderado(azar, [
+    [8, 45],
+    [7, 20],
+    [6, 20],
+    [5, 15],
+  ]);
   if (ligero) {
     inicio = azar() < 0.5 ? 0 : 2;
     fin = inicio + 3 + Math.floor(azar() * 2);
@@ -163,15 +418,21 @@ const generarClasesDeGrupo = ({ indice, letra, materias }, ocupadas) => {
     const candidatas = esLab
       ? Array.from({ length: 10 }, (_, i) => `Lab. ${i + 1}`)
       : Array.from({ length: 30 }, (_, i) => `Aula ${((aulaBase - 1 + i) % 30) + 1}`);
-    const libre = candidatas.find((aula) => bloques.every((b) => !ocupadas.has(`${dia}|${letra}|${b}|${aula}`)));
+    const libre = candidatas.find((aula) =>
+      bloques.every((b) => !ocupadas.has(`${dia}|${letra}|${b}|${aula}`)),
+    );
     return libre ?? candidatas[0];
   };
 
   for (let dia = 1; dia <= 5; dia++) {
     const bloques = diseñarDia(azar, dia - 1 === diaLigero);
-    for (let i = 0; i < bloques.length; ) {
+    for (let i = 0; i < bloques.length;) {
       // Una clase dura 1, 2 o 3 bloques de 40 min seguidos (40, 80 o 120 min).
-      const deseados = elegirPonderado(azar, [[1, 30], [2, 45], [3, 25]]);
+      const deseados = elegirPonderado(azar, [
+        [1, 30],
+        [2, 45],
+        [3, 25],
+      ]);
       let duracion = 1;
       while (duracion < deseados && bloques[i + duracion] === bloques[i] + duracion) duracion++;
       const grupoBloques = bloques.slice(i, i + duracion);
@@ -213,7 +474,17 @@ const construirPlan = () => {
 };
 
 // -------------------------------------------------------------- Base de datos
-const TABLAS = ['carrera', 'grupo', 'materia', 'clase', 'aviso', 'administrador', 'administrador_grupo', 'dispositivo', 'historial_cambio'];
+const TABLAS = [
+  'carrera',
+  'grupo',
+  'materia',
+  'clase',
+  'aviso',
+  'administrador',
+  'administrador_grupo',
+  'dispositivo',
+  'historial_cambio',
+];
 
 const conectar = async () => {
   if (!process.env.DATABASE_URL) throw new Error('Falta DATABASE_URL en api/.env');
@@ -226,7 +497,8 @@ const marcaDeTiempo = () => new Date().toISOString().replace(/[:.]/g, '-');
 
 const respaldar = async (cliente, ruta) => {
   const copia = {};
-  for (const tabla of TABLAS) copia[tabla] = (await cliente.query(`SELECT * FROM ${tabla} ORDER BY 1`)).rows;
+  for (const tabla of TABLAS)
+    copia[tabla] = (await cliente.query(`SELECT * FROM ${tabla} ORDER BY 1`)).rows;
   await writeFile(ruta, JSON.stringify(copia, null, 2));
 };
 
@@ -243,7 +515,9 @@ const aplicar = async (plan) => {
     const existentes = (await cliente.query('SELECT COUNT(*)::int AS n FROM grupo')).rows[0].n;
     const nuevos = plan.length;
     if (existentes + nuevos !== TOTAL_GRUPOS) {
-      console.log(`Aviso: la base ya tiene ${existentes} grupos; con ${nuevos} nuevos habrá ${existentes + nuevos}.`);
+      console.log(
+        `Aviso: la base ya tiene ${existentes} grupos; con ${nuevos} nuevos habrá ${existentes + nuevos}.`,
+      );
     }
 
     const agregado = { carreras: [], grupos: [], materias: [] };
@@ -303,7 +577,10 @@ const aplicar = async (plan) => {
       }
 
       await cliente.query('COMMIT');
-      await writeFile(rutaRollback, JSON.stringify({ creado: new Date().toISOString(), ...agregado }, null, 2));
+      await writeFile(
+        rutaRollback,
+        JSON.stringify({ creado: new Date().toISOString(), ...agregado }, null, 2),
+      );
       console.log(`Rollback: ${rutaRollback.pathname}`);
       console.log(
         `Agregado: ${agregado.carreras.length} carreras, ${agregado.grupos.length} grupos, ` +
@@ -337,7 +614,9 @@ const revertir = async (archivo) => {
         [carreras],
       );
       await cliente.query('COMMIT');
-      console.log(`Revertido: ${g.rowCount} grupos, ${m.rowCount} materias, ${c.rowCount} carreras.`);
+      console.log(
+        `Revertido: ${g.rowCount} grupos, ${m.rowCount} materias, ${c.rowCount} carreras.`,
+      );
     } catch (error) {
       await cliente.query('ROLLBACK');
       throw error;
@@ -356,14 +635,19 @@ if (modo === '--revertir' && argumento) {
   const plan = construirPlan();
   const clases = plan.reduce((suma, g) => suma + g.clases.length, 0);
   const materias = new Set(plan.flatMap((g) => g.materias.map((m) => m.nombre)));
-  console.log(`Plan: ${CARRERAS.length} carreras, ${plan.length} grupos nuevos, ${materias.size} materias, ${clases} clases.`);
+  console.log(
+    `Plan: ${CARRERAS.length} carreras, ${plan.length} grupos nuevos, ${materias.size} materias, ${clases} clases.`,
+  );
   if (modo === '--simular') {
     const muestra = plan[8];
     console.log(`\nMuestra: ${muestra.carrera} ${muestra.cuatrimestre}${muestra.letra}`);
     for (let d = 1; d <= 5; d++) {
       const dia = muestra.clases.filter((c) => c.dia_semana === d);
-      console.log(`  Día ${d} (${dia.length} clases): ${dia[0].hora_inicio}-${dia.at(-1).hora_fin}`);
-      for (const c of dia) console.log(`    ${c.hora_inicio}-${c.hora_fin}  ${c.materia} (${c.aula})`);
+      console.log(
+        `  Día ${d} (${dia.length} clases): ${dia[0].hora_inicio}-${dia.at(-1).hora_fin}`,
+      );
+      for (const c of dia)
+        console.log(`    ${c.hora_inicio}-${c.hora_fin}  ${c.materia} (${c.aula})`);
     }
   } else {
     await aplicar(plan);
