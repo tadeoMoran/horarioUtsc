@@ -30,8 +30,8 @@ export default function Inicio() {
 
   const hoy = diaSemanaDe(ahora);
   const [diaElegido, setDiaElegido] = useState(null);
-  // Los domingos no hay clases: se muestra el lunes.
-  const dia = diaElegido ?? (hoy === 7 ? 1 : hoy);
+  // Sábados y domingos no hay clases: se muestra el lunes.
+  const dia = diaElegido ?? (hoy >= 6 ? 1 : hoy);
   const esHoy = dia === hoy;
 
   const fechas = useMemo(() => fechasDeLaSemana(ahora), [ahora]);
