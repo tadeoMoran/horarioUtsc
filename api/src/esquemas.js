@@ -13,6 +13,31 @@ export const esquemas = {
 
   consultaLista: z.object({ limite: z.coerce.number().int().min(1).max(100).default(50) }),
 
+  // Filtros del historial: rango de fechas (día local), administrador y campo cambiado.
+  consultaHistorial: z
+    .object({
+      limite: z.coerce.number().int().min(1).max(100).default(50),
+      desde: z.iso.date().optional(),
+      hasta: z.iso.date().optional(),
+      administrador_id: id.optional(),
+      campo: z
+        .enum([
+          'creada',
+          'eliminada',
+          'materia',
+          'dia_semana',
+          'hora_inicio',
+          'hora_fin',
+          'aula',
+          'estado',
+        ])
+        .optional(),
+    })
+    .refine((q) => !q.desde || !q.hasta || q.desde <= q.hasta, {
+      message: 'La fecha "desde" no puede ser posterior a "hasta"',
+      path: ['desde'],
+    }),
+
   dispositivo: z.object({
     grupo_id: id,
     token_push: z.string().regex(/^Expo(nent)?PushToken\[[^\]]+\]$/, 'Token de Expo inválido'),
