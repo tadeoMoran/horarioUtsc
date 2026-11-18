@@ -77,12 +77,12 @@ export const formatearDuracion = (minutos) => {
   return resto ? `${horas} h ${dosDigitos(resto)} min` : `${horas} h`;
 };
 
-// Fechas de lunes a sábado de la semana que contiene `referencia`.
+// Fechas de lunes a viernes de la semana que contiene `referencia`.
 export const fechasDeLaSemana = (referencia = new Date()) => {
   const lunes = new Date(referencia);
   lunes.setHours(0, 0, 0, 0);
   lunes.setDate(lunes.getDate() - (diaSemanaDe(lunes) - 1));
-  return [1, 2, 3, 4, 5, 6].map((dia) => {
+  return [1, 2, 3, 4, 5].map((dia) => {
     const fecha = new Date(lunes);
     fecha.setDate(lunes.getDate() + dia - 1);
     return { dia, fecha };
