@@ -1,4 +1,10 @@
-import { agruparPorDia, clasesDelDia, idsEnCurso, situacionDelDia } from '../horario';
+import {
+  agruparPorCarrera,
+  agruparPorDia,
+  clasesDelDia,
+  idsEnCurso,
+  situacionDelDia,
+} from '../horario';
 import {
   aMinutos,
   diaSemanaDe,
@@ -51,9 +57,9 @@ describe('tiempo', () => {
     expect(formatearAntiguedad(new Date(2026, 8, 28, 9, 0), ahora)).toBe('Ayer');
   });
 
-  test('la semana va de lunes a sábado', () => {
+  test('la semana va de lunes a viernes', () => {
     const semana = fechasDeLaSemana(new Date(2026, 8, 30)); // miércoles
-    expect(semana.map((s) => s.fecha.getDate())).toEqual([28, 29, 30, 1, 2, 3]);
+    expect(semana.map((s) => s.fecha.getDate())).toEqual([28, 29, 30, 1, 2]);
   });
 });
 
@@ -98,5 +104,30 @@ describe('horario del día', () => {
     const grupos = agruparPorDia([clase(9, '07:00', '08:00', 'normal', 4), ...martes]);
     expect(grupos.map((g) => g.dia)).toEqual([2, 4]);
     expect(grupos[0].clases.map((c) => c.id)).toEqual([1, 2, 3]);
+  });
+});
+
+describe('grupos por carrera', () => {
+  const grupo = (id, carreraId, carrera, cuatrimestre, letra) => ({
+    id,
+    carrera_id: carreraId,
+    carrera,
+    cuatrimestre,
+    letra,
+  });
+
+  test('ordena las carreras alfabéticamente y sus grupos por cuatrimestre y letra', () => {
+    const carreras = agruparPorCarrera([
+      grupo(1, 2, 'Ing. en Mecatrónica', 3, 'B'),
+      grupo(2, 1, 'Ing. Industrial', 10, 'A'),
+      grupo(3, 2, 'Ing. en Mecatrónica', 1, 'C'),
+      grupo(4, 2, 'Ing. en Mecatrónica', 3, 'A'),
+    ]);
+    expect(carreras.map((c) => c.nombre)).toEqual(['Ing. en Mecatrónica', 'Ing. Industrial']);
+    expect(carreras[0].grupos.map((g) => g.id)).toEqual([3, 4, 1]);
+  });
+
+  test('sin grupos no hay carreras', () => {
+    expect(agruparPorCarrera([])).toEqual([]);
   });
 });
