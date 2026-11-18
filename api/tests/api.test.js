@@ -171,6 +171,36 @@ describe('administración de clases', () => {
     const historial = await request(app).get('/api/admin/grupos/1/historial').set(auth());
     expect(historial.body[0]).toMatchObject({ campo: 'eliminada', clase_id: null });
   });
+
+  test('el historial se filtra por campo, administrador y fecha', async () => {
+    const consulta = (query) =>
+      request(app).get(`/api/admin/grupos/1/historial${query}`).set(auth());
+
+    const porCampo = await consulta('?campo=estado');
+    expect(porCampo.status).toBe(200);
+    expect(porCampo.body.length).toBeGreaterThan(0);
+    expect(porCampo.body.every((h) => h.campo === 'estado')).toBe(true);
+
+    expect((await consulta('?administrador_id=1')).body.length).toBeGreaterThan(0);
+    expect((await consulta('?administrador_id=99')).body).toEqual([]);
+
+    expect((await consulta('?desde=2000-01-01&hasta=2999-12-31')).body.length).toBeGreaterThan(0);
+    expect((await consulta('?hasta=2000-01-01')).body).toEqual([]);
+    expect((await consulta('?desde=2999-01-01')).body).toEqual([]);
+
+    const opciones = await request(app)
+      .get('/api/admin/grupos/1/historial/administradores')
+      .set(auth());
+    expect(opciones.body).toEqual([{ id: 1, nombre: 'Docente Prueba' }]);
+  });
+
+  test('el historial rechaza filtros inválidos', async () => {
+    const consulta = (query) =>
+      request(app).get(`/api/admin/grupos/1/historial${query}`).set(auth());
+    expect((await consulta('?campo=inventado')).status).toBe(400);
+    expect((await consulta('?desde=ayer')).status).toBe(400);
+    expect((await consulta('?desde=2026-02-01&hasta=2026-01-01')).status).toBe(400);
+  });
 });
 
 describe('avisos y dispositivos', () => {
