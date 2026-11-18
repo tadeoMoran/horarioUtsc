@@ -74,5 +74,12 @@ export const api = {
   eliminarClase: (id) => solicitar(`/admin/clases/${id}`, { metodo: 'DELETE' }),
   avisos: (grupoId) => solicitar(`/grupos/${grupoId}/avisos`, { conSesion: false }),
   publicarAviso: (aviso) => solicitar('/admin/avisos', { metodo: 'POST', cuerpo: aviso }),
-  historial: (grupoId) => solicitar(`/admin/grupos/${grupoId}/historial`),
+  historial: (grupoId, filtros = {}) => {
+    const consulta = new URLSearchParams(
+      Object.entries(filtros).filter(([, valor]) => valor !== '' && valor != null),
+    ).toString();
+    return solicitar(`/admin/grupos/${grupoId}/historial${consulta ? `?${consulta}` : ''}`);
+  },
+  administradoresHistorial: (grupoId) =>
+    solicitar(`/admin/grupos/${grupoId}/historial/administradores`),
 };
