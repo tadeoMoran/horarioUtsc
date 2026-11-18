@@ -1,7 +1,7 @@
 // Lector de CSV para importar horarios. Funciona con coma, punto y coma o tabulador
 // (Excel en español suele guardar con «;») y con o sin comillas.
 
-const DIAS_POR_NOMBRE = { lunes: 1, martes: 2, miercoles: 3, jueves: 4, viernes: 5, sabado: 6 };
+const DIAS_POR_NOMBRE = { lunes: 1, martes: 2, miercoles: 3, jueves: 4, viernes: 5 };
 
 const ENCABEZADOS = {
   materia: 'materia',
@@ -71,7 +71,7 @@ export const parsearCsv = (texto) => {
 
 export const normalizarDia = (valor) => {
   const texto = sinAcentos(valor);
-  if (/^[1-7]$/.test(texto)) return Number(texto);
+  if (/^[1-5]$/.test(texto)) return Number(texto);
   return DIAS_POR_NOMBRE[texto] ?? null;
 };
 
